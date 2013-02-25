@@ -4,7 +4,7 @@ from audrey.views.blog import (BlogIndexView,
                                BlogArchiveView,
                                BlogSearchView)
 
-from audrey.views.blog import (BlogAdminView,
+from audrey.views.admin import (BlogAdminIndexView,
                                BlogAdminConfirmView,
                                BlogAdminExecuteView)
 
@@ -14,7 +14,7 @@ urlpatterns = patterns('audrey.views',
     url(r'^archive/$',BlogArchiveView.as_view(),name='blog_archive'),
     url(r'^search/$',BlogSearchView.as_view(),name='blog_search'),
 
-    url(r'^ex_admin/$',BlogAdminView.as_view(),name='blog_admin'),
-    url(r'^ex_admin/confirm$',BlogAdminView.as_view(),name='blog_admin_confirm'),
+    url(r'^ex_admin/$',BlogAdminIndexView.as_view(),name='blog_admin'),
+    url(r'^ex_admin/confirm/$',BlogAdminConfirmView.as_view(),name='blog_admin_confirm'),
     url(r'^ex_admin/execute/$',BlogAdminExecuteView.as_view(),name='blog_admin_execute')
 )

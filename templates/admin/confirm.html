@@ -1,0 +1,8 @@
+{% for line in content %}
+{{line}}
+{% endfor %}
+<form method="post" action="/ex_admin/execute/">
+{% csrf_token %}
+<input type="hidden" name="content" value={{content}}> 
+<input type="submit" value="publish">
+</form>

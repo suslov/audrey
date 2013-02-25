@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.db import models
 
 class Blog(models.Model):
@@ -7,3 +8,8 @@ class Blog(models.Model):
     created_at = models.DateTimeField()
     updated_at = models.DateTimeField()
 
+    @classmethod
+    def create(cls,title=title,content=content):
+        cls.objects.create(title=title,content=content,
+                           created_at = datetime.now(),
+                           updated_at = datetime.now())

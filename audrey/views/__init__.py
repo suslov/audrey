@@ -8,5 +8,5 @@ class BlogView(BlogBaseView):
     pass
 
 
-class BlogView(BlogBaseView):
+class BlogAdminView(BlogBaseView):
     pass
