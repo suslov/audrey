@@ -1,12 +1,18 @@
 <html>
-
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
 <div>
 <form method="post" action="/ex_admin/confirm/">
+
+<!-- <textarea name="content" cols=40 rows=40> -->
+<!-- </textarea> -->
 {% csrf_token %}
-<textarea name="content" cols=40 rows=40>
-</textarea>
+{{ form.title }}<br/>
+{{ form.content }}<br/>
 <input type=submit value="confirm">
 </form>
 </div>
-
+</body>
 </html>

@@ -1,1 +1,8 @@
-{{hello}}
+<html>
+{% for blog in blogs %}
+<div>
+<h1>{{ blog.title }}</h1>
+<h2>{{ blog.content|linebreaks }}</h2>
+</div>
+{% endfor %}
+</html>

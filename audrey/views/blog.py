@@ -1,4 +1,7 @@
 from django.views.generic.base import TemplateView
+
+from audrey.models import Blog
+
 from audrey.views import BlogView
 
 class BlogIndexView(BlogView,TemplateView):
@@ -6,7 +9,8 @@ class BlogIndexView(BlogView,TemplateView):
     template_name = 'index.html'
 
     def get(self,request,*args,**kwargs):
-        return self.render_to_response({'hello':'hello'})
+        blogs = Blog.get_newest() 
+        return self.render_to_response({'blogs':blogs})
 
 
 class BlogDetailView(BlogView,TemplateView):

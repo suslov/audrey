@@ -1,8 +1,15 @@
-{% for line in content %}
+<html>
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+{% for line in form %}
 {{line}}
 {% endfor %}
-<form method="post" action="/ex_admin/execute/">
+<form method="post" enctype="multipart/form_data" action="/ex_admin/execute/">
 {% csrf_token %}
-<input type="hidden" name="content" value={{content}}> 
+<input type="hidden" name="content" value="{{form}}"> 
 <input type="submit" value="publish">
 </form>
+</body>
+</html>
