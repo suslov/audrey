@@ -21,8 +21,8 @@ class BlogDetailView(BlogView,TemplateView):
         blog_id = int(kwargs.get('blog_id',None))
         if blog_id is None:
             pass
-                      
-        return self.render_to_response({'hello':'hello'})
+        blog = Blog.get_or_none(blog_id)
+        return self.render_to_response({'blog':blog})
 
 class BlogArchiveView(BlogView,TemplateView):
 

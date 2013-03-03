@@ -3,9 +3,6 @@
 <meta charset="UTF-8">
 </head>
 <body>
-{% for line in form %}
-{{line}}
-{% endfor %}
 <form method="post" enctype="multipart/form_data" action="/ex_admin/execute/">
 {% csrf_token %}
 <input type="hidden" name="content" value="{{form}}"> 

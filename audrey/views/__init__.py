@@ -17,4 +17,4 @@ class BlogAdminView(BlogBaseView):
 class BlogContentForm(ModelForm):
     class Meta:
         model = Blog
-        #exclude = ('created_at','updated_at',)
+        exclude = ('created_at','updated_at',)
