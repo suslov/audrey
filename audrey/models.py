@@ -17,7 +17,7 @@ class Blog(models.Model):
     def get_or_none(cls,id):
         try:
             return cls.objects.get(id=id)
-        except DataDoesNotExist:
+        except cls.DataDoesNotExist:
             return None
 
     @classmethod

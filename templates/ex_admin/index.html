@@ -10,7 +10,7 @@
 <!-- </textarea> -->
 {% csrf_token %}
 {{ form.title }}<br/>
-{{ form.content }}<br/>
+{{ form.content|safe|linebreaks}}<br/>
 <input type=submit value="confirm">
 </form>
 </div>

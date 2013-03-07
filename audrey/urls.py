@@ -4,7 +4,7 @@ from audrey.views.blog import (BlogIndexView,
                                BlogArchiveView,
                                BlogSearchView)
 
-from audrey.views.admin import (BlogAdminIndexView,
+from audrey.views.ex_admin import (BlogAdminIndexView,
                                BlogAdminConfirmView,
                                BlogAdminExecuteView)
 

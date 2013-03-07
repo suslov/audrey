@@ -21,7 +21,7 @@
 </header>
 <div class="date">{{blog.updated_at}}</div>
 </article>
-<p>{{ blog.content|linebreaks }}</p>
+<p>{{ blog.content|safe|linebreaks }}</p>
 </li>
 {% endfor %}
 </ol>

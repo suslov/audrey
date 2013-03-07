@@ -1,3 +1,4 @@
+import markdown
 from django.views.generic.base import TemplateView
 
 from audrey.models import Blog

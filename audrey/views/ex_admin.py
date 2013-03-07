@@ -8,14 +8,14 @@ from audrey.models import Blog
 from audrey.views import BlogAdminView,BlogContentForm
 
 class BlogAdminIndexView(BlogAdminView,TemplateView):
-    template_name = 'admin/index.html'
+    template_name = 'ex_admin/index.html'
     
     def get(self,request,*args,**kwargs):
         form = BlogContentForm()
         return self.render_to_response({"form":form})
 
 class BlogAdminConfirmView(BlogAdminView,TemplateView):
-    template_name = 'admin/confirm.html'
+    template_name = 'ex_admin/confirm.html'
     
     def post(self,request,*args,**kwargs):
         
