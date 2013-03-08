@@ -1,0 +1,33 @@
+.serif, body {
+    font-family: "Hoefler Text", Cambria, Georgia, serif;
+}
+
+/* line 63, content/assets/stylesheets/_main.scss */
+.sans {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+/* line 66, content/assets/stylesheets/_main.scss */
+.mono, pre, code, tt {
+    font-family: Bitstream Vera Sans Mono, monospace;
+}
+
+/* line 69, content/assets/stylesheets/_main.scss */
+.caps, .allcaps, h1, caption, .smallcaps, h4 {
+    letter-spacing: 0.1em;
+}
+
+/* line 72, content/assets/stylesheets/_main.scss */
+.allcaps, h1, caption {
+    text-transform: uppercase;
+}
+
+#document.main .date {
+    font-style: italic;
+}
+
+h1 {
+    font-size: 1.66667em;
+    line-height: 0.9em;
+    margin-bottom: 0.9em;
+}

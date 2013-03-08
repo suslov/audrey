@@ -1,0 +1,71 @@
+.serif, body {
+    font-family: "Hoefler Text", Cambria, Georgia, serif;
+}
+
+/* line 63, content/assets/stylesheets/_main.scss */
+.sans {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+/* line 66, content/assets/stylesheets/_main.scss */
+.mono, pre, code, tt {
+    font-family: Bitstream Vera Sans Mono, monospace;
+}
+
+.caps, .allcaps, h1, caption, h2, .smallcaps, h4 {
+    letter-spacing: 0.1em;
+}
+
+#document.main.articles .date {
+    font-style: italic;
+}
+
+
+h2, h3, h4, h5, h6 {
+    margin-bottom: 1.5em;
+}
+
+.caps, .allcaps, h1, caption, h2, .smallcaps, h4 {
+    letter-spacing: 0.1em;
+}
+
+body{
+    background-color: #5E740B;
+}
+
+body > header {
+    border-top:4px solid#333;
+    border-bottom: 1px solid #999;
+    background: #fd6b1b;
+}
+
+body > header.display:after{
+    content:'';
+    display: table;
+    clear:both;
+}
+
+body > header.title{
+    font-size:2.2em;
+    line-height:1.4em;
+    letter-spacing:0.15em;
+}
+
+h2{
+    font-size:1.6em;
+    line-height: 0.9em;
+    margin-bottom: 0.9em;
+}
+
+#articles{
+    width:50%;
+    float:left;
+    margin-right:1.7%;
+    display:inline;
+}
+#category{
+    width:50%;
+    float:right;
+    margin-right:0;
+    display:inline;
+}
