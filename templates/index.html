@@ -1,3 +1,4 @@
+{% load tags %}
 <html>
 <head>
 <title>GNOSISULOV</title>
@@ -27,7 +28,7 @@
 </header>
 <div class="date">{{blog.updated_at}}</div>
 </article>
-<p>{{ blog.content|safe|linebreaks }}</p>
+<p>{{ blog.content|markdown:"codehilite"|safe|summary}}</p>
 </li>
 {% endfor %}
 </ol>

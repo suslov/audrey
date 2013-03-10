@@ -5,16 +5,16 @@ from django.db.models import F
 class Blog(models.Model):
     title = models.CharField(max_length=255)
     content = models.TextField()
+    count = models.IntegerField(default=0)
     created_at = models.DateTimeField()
     updated_at = models.DateTimeField(auto_now_add=True)
     category = models.ManyToManyField('Category')
-    comments = models.OneToOneField('Comment',null=True, blank=True, default = None)
 
     @classmethod
     def create(cls,title=title,content=content):
         return cls.objects.create(title=title,content=content,
                                     created_at = datetime.now())
-                  
+
     @classmethod
     def get_or_none(cls,id):
         try:
@@ -32,12 +32,31 @@ class Blog(models.Model):
     @classmethod
     def get_newest(cls,num=5,exclude=None):
         if exclude is None:
-            return cls.objects.all().order_by('-updated_at')[0:num]
+            return cls.objects.all().order_by('-updated_at')[:num]
+
+    @classmethod
+    def get_most_read(cls,num=5):
+        return cls.objects.all().order_by('-count')[:num]
 
     def get_relevant(self,num=5):
         category = self.category.all()
         cls = self.__class__
-        return cls.objects.filter(category__in=category).exclude(id=self.id)[0:num]
+        return cls.objects.filter(category__in=category).exclude(id=self.id)[:num]
+    @property
+    def next(self):
+        cls = self.__class__
+        try:
+            return cls.objects.get(id=self.id+1)
+        except cls.DoesNotExist:
+            return cls.objects.get(id=1)
+
+    @property
+    def previous(self):
+        cls = self.__class__
+        try:
+            return cls.objects.get(id=self.id-1)
+        except cls.DoesNotExist:
+            return cls.objects.all().order_by('-id')[0]
 
     def __unicode__(self):
         return self.title
@@ -52,31 +71,17 @@ class Category(models.Model):
 
 
 class Comment(models.Model):
+    blog = models.ForeignKey(Blog)
     author = models.CharField(max_length=255)
-    email = models.EmailField()
+    email = models.EmailField(null=True)
     comment = models.TextField()
     reply_to = models.IntegerField(null=True)
-    #created_at = models.DateTimeField(default=None,auto_now=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    @classmethod
+    def get_from_blog(cls,blog):
+        return cls.objects.filter(blog=blog)
 
     def __unicode__(self):
-        pass
+        return '{}:{}'.format(self.blog.title,self.comment[:50])
 
-
-
-class Guzai(models.Model):
-
-    guzai = models.CharField(max_length=200)
-    def __unicode__(self):
-        return self.guzai
-    class Meta:
-        ordering = ('guzai',)
-
-class Gohan(models.Model):
-
-    gohan = models.CharField(max_length=200)
-    guzais = models.ManyToManyField(Guzai)
-
-    def __unicode__(self):
-        return self.gohan
-    class Meta:
-        ordering = ('gohan',)

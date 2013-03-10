@@ -23,16 +23,25 @@
 </div>
 
 <div class="page" id="comment">
-{% for comment in blog.comments %}
-    <p>{{ comment }}</p>
+<h2>Add comment</h2>
+<form action="/comment/{{ blog.id }}/" method="POST">
+{% csrf_token %}
+{{ form.as_p }}
+<input type="submit" value="ADD comment"/>
+</form>
+
+{% for comment in comments %}
+    <p>{{ comment.author|safe|linebreaks}}</p>
+    <p>{{ comment.comment|safe|linebreaks}}</p>
 {% endfor %}
+
 </div>
 
 </div>
 <div id="nav">
     <div class="articles">
         {%  if relevant_blogs %}
-        <h2>relevant post</h2>
+        <h3>relevant post</h3>
         <ol>
         {%for post in relevant_blogs %}
             <li><a class="title" href="/detail/{{post.id}}">{{ post.title }}</a></li>
@@ -40,7 +49,7 @@
         {% endfor %}
         </ol>
         {% else %}
-        <h2>recent post</h2>
+        <h3>recent post</h3>
         <ol>
             {%for post in recent_blogs %}
                 <li><a class="title" href="/detail/{{post.id}}">{{ post.title }}</a></li>
@@ -52,5 +61,12 @@
 </div>
 </div>
 
+<div id=''>
+<li><a href="/detail/{{ blog.previous.id}}">Previous</a></li>
+<li><a href="/detail/{{blog.next.id}}">Next</a></li>
+</div>
+<div id=''>
+<li><a href='/'>Home</a></li>
+</div>
 </body>
 </html>

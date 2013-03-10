@@ -22,4 +22,5 @@ class BlogContentForm(ModelForm):
 class BlogContentForm(ModelForm):
     class Meta:
         model = Comment
+        exclude = ('blog','reply_to')
 

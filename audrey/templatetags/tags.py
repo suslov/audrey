@@ -43,3 +43,7 @@ def markdown(value, arg=''):
         else :
             safe_mode = False
         return markdown.markdown(value, extensions, safe_mode=safe_mode)
+
+@register.filter()
+def summary(value):
+    return value[0:500]
