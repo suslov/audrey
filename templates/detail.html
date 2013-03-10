@@ -1,6 +1,8 @@
 {% load tags %}
 <html>
 <head>
+<title>GNOSISULOV</title>
+<link href="{{ STATIC_URL }}main.css" rel='stylesheet' type='text/css'>
 </head>
 <body>
 
@@ -11,18 +13,44 @@
 </header>
 <div id="document">
 <div id="main">
+
 <div class="" id="content">
 <h1>{{blog.title}}</h1>
 <div class="date">{{blog.updated_at}}</div>
 <p>
 {{blog.content|markdown:"codehilite"|safe}}
 </p>
-    aaaaaaaaaaaaa
-<p>
-{{blog.as_p}}
-</p>
+</div>
+
+<div class="page" id="comment">
+{% for comment in blog.comments %}
+    <p>{{ comment }}</p>
+{% endfor %}
+</div>
+
+</div>
+<div id="nav">
+    <div class="articles">
+        {%  if relevant_blogs %}
+        <h2>relevant post</h2>
+        <ol>
+        {%for post in relevant_blogs %}
+            <li><a class="title" href="/detail/{{post.id}}">{{ post.title }}</a></li>
+            <li>{{ post.updated_at }}</li>
+        {% endfor %}
+        </ol>
+        {% else %}
+        <h2>recent post</h2>
+        <ol>
+            {%for post in recent_blogs %}
+                <li><a class="title" href="/detail/{{post.id}}">{{ post.title }}</a></li>
+                <li>{{ post.updated_at }}</li>
+            {% endfor %}
+        </ol>
+        {% endif %}
+    </div>
 </div>
 </div>
-</div>
+
 </body>
 </html>

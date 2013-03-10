@@ -23,7 +23,13 @@ class BlogDetailView(BlogView,TemplateView):
         if blog_id is None:
             pass
         blog = Blog.get_or_none(blog_id)
-        return self.render_to_response({'blog':blog})
+        relevant_blogs = blog.get_relevant()
+        recent_blogs = None
+        if not relevant_blogs:
+            recent_blogs = blog.get_newest(exclude=blog)
+        return self.render_to_response({'blog':blog,
+                                        'relevant_blogs':relevant_blogs,
+                                        'recent_blogs':recent_blogs})
 
 class BlogArchiveView(BlogView,TemplateView):
 
