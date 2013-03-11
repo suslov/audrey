@@ -7,38 +7,12 @@
 <body>
 
 <header>
-<div class="title">
-  GNOSISULOV
+<div class="page-header">
+  <h1>GNOSISULOV</h1>
 </div>
 </header>
 <div class="container-fluid" >
 <div class="row-fluid" >
-
-
-    <div class="span3">
-        <div class="well sidebar-nav">
-            <ul class="nav nav-list">
-                {%  if relevant_blogs %}
-                    <li class="nav-header">relevant post</li>
-                    <ol>
-                        {%for post in relevant_blogs %}
-                            <li><a class="title" href="/detail/{{post.id}}">{{ post.title }}</a></li>
-                            <li>{{ post.updated_at }}</li>
-                        {% endfor %}
-                    </ol>
-                {% else %}
-                    <li class="nav-header">recent post</li>
-                    <ol>
-                        {%for post in recent_blogs %}
-                            <li><a class="title" href="/detail/{{post.id}}">{{ post.title }}</a></li>
-                            <li>{{ post.updated_at }}</li>
-                        {% endfor %}
-                    </ol>
-                {% endif %}
-            </ul>
-        </div>
-    </div>
-
 
     <div class="span9" >
         <div class="hello-unit">
@@ -50,19 +24,44 @@
 
 
             <h2>Add comment</h2>
-            <form action="/comment/{{ blog.id }}/" method="POST">
+            <form class="form-horizontal" action="/comment/{{ blog.id }}/" method="POST">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <input type="submit" value="ADD comment"/>
+                <button type="submit" class="btn">ADD comment</button>
             </form>
 
             {% for comment in comments %}
-                <p>{{ comment.author|safe|linebreaks}}</p>
+                <div class='container'>
+                <h3>{{ comment.author|safe|linebreaks}}</h3>
                 <p>{{ comment.comment|safe|linebreaks}}</p>
+                </div>
             {% endfor %}
         </div>
     </div>
 
+    <div class="span3 ">
+        <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+                {%  if relevant_blogs %}
+                    <li class="nav-header">relevant post</li>
+                    <li>
+                        {%for post in relevant_blogs %}
+                            <li><a class="title" href="/detail/{{post.id}}">{{ post.title }}</a></li>
+                            <li>{{ post.updated_at }}</li>
+                        {% endfor %}
+                    </li>
+                {% else %}
+                    <li class="nav-header">recent post</li>
+                    <li>
+                        {%for post in recent_blogs %}
+                            <li><a class="title" href="/detail/{{post.id}}">{{ post.title }}</a></li>
+                            <li>{{ post.updated_at }}</li>
+                        {% endfor %}
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
 </div>
 </div>
 

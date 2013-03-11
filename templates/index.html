@@ -6,42 +6,36 @@
 </head>
 <body>
 <header>
-<div class="display">
-<div class="title">
-  GNOSISULOV
-</div>
-</div>
+    <div class="page-header">
+        <h1>GNOSISULOV</h1>
+    </div>
 </header>
 
-<div id="document">
-<div id="main">
+<div id="container-fluid">
+<div class="row-fluid">
+<div class="span7 offset1">
+<h1>Articles</h1>
 
-<div id="articles">
-<h2>Articles</h2>
-<section>
-<ol>
 {% for blog in blogs %}
-<li>
-<article>
-<header>
-<a class="title" href="/detail/{{blog.id}}">{{ blog.title }}</a>
-</header>
+
+<div class="container">
+<h2><a class="title" href="/detail/{{blog.id}}">{{ blog.title }}</a></h2>
 <div class="date">{{blog.updated_at}}</div>
 </article>
-<p>{{ blog.content|markdown:"codehilite"|safe|summary}}</p>
-</li>
+<p>{{ blog.content|summary|markdown:"codehilite"|safe}}</p>
+</div>
+    
 {% endfor %}
-</ol>
-</section>
+
 </div>
 
-<div id="category">
-<section>
-<ol>
-    <li>THIS IS A CATEGORY</li>
-</ol>
-</section>
-</div>
+    <div class="span2 ">
+        <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+            <li class="nav-header">THIS IS A CATEGORY</li>
+            </ul>
+        </div>
+    </div>
 
 </div>
 </div>
