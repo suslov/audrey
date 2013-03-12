@@ -1,33 +1,53 @@
+{% extends "base.html" %}
 {% load tags %}
-<html>
-<head>
-<title>GNOSISULOV</title>
-    <link href="{{ STATIC_URL }}bootstrap/css/bootstrap.css" rel='stylesheet'>
-</head>
-<body>
 
-<header>
-<div class="page-header">
-  <h1>GNOSISULOV</h1>
-</div>
-</header>
-<div class="container-fluid" >
+{% block content %}
+<div class="container" >
 <div class="row-fluid" >
 
     <div class="span9" >
         <div class="hello-unit">
-            <h1>{{blog.title}}</h1>
+            <div class="page-header">
+                <h1>{{blog.title}}</h1>
+            </div>
             <div class="date">{{blog.updated_at}}</div>
             <p>
                 {{blog.content|markdown:"codehilite"|safe}}
             </p>
 
-
-            <h2>Add comment</h2>
+         </div>
+         <div>
+            <section>
+             <h2>Add comment</h2>
             <form class="form-horizontal" action="/comment/{{ blog.id }}/" method="POST">
                 {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit" class="btn">ADD comment</button>
+                {{ form.non_field_errors }}
+                <div class="control-group">
+                    {{ form.author.errors }}
+                    <label class="control-label" >Your name:</label>
+                    <div class="controls">
+                    {{ form.author }}
+                    </div>
+                </div>
+                <div class="control-group">
+                    {{ form.email.errors }}
+                    <label class="control-label">Email:</label>
+                    <div class="controls">
+                    {{ form.email }}
+                    </div>
+                </div>
+                <div class="control-group">
+                    {{ form.comment.errors }}
+                    <label class="control-label">Comment:</label>
+                    <div class="controls">
+                    {{ form.comment }}
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="controls">
+                    <button type="submit" class="btn btn-primary">ADD comment</button>
+                    </div>
+                </div>
             </form>
 
             {% for comment in comments %}
@@ -36,7 +56,8 @@
                 <p>{{ comment.comment|safe|linebreaks}}</p>
                 </div>
             {% endfor %}
-        </div>
+            </section>
+         </div>
     </div>
 
     <div class="span3 ">
@@ -64,30 +85,4 @@
     </div>
 </div>
 </div>
-
-<div class='pager'>
-<ul>
-<li><a href="/detail/{{ blog.previous.id}}">Previous</a></li>
-<li><a href='/'>Home</a></li>
-<li><a href="/detail/{{blog.next.id}}">Next</a></li>
-</ul>
-</div>
-
-<script src="http://code.jquery.com/jquery.js"></script>
-<script src="{{ STATIC_URL }}bootstrap/js/bootstrap.min.js"></script>
-{#<script src="{{STATIC_URL}}bootstrap/js/bootstrap-transition.js"></script>#}
-{#<script src="{{STATIC_URL}}bootstrap/js/bootstrap-alert.js"></script>#}
-{#<script src="{{STATIC_URL}}bootstrap/js/bootstrap-modal.js"></script>#}
-{#<script src="{{STATIC_URL}}bootstrap/js/bootstrap-dropdown.js"></script>#}
-{#<script src="{{STATIC_URL}}bootstrap/js/bootstrap-scrollspy.js"></script>#}
-{#<script src="{{STATIC_URL}}bootstrap/js/bootstrap-tab.js"></script>#}
-{#<script src="{{STATIC_URL}}bootstrap/js/bootstrap-tooltip.js"></script>#}
-{#<script src="{{STATIC_URL}}bootstrap/js/bootstrap-popover.js"></script>#}
-{#<script src="{{STATIC_URL}}bootstrap/js/bootstrap-button.js"></script>#}
-{#<script src="{{STATIC_URL}}bootstrap/js/bootstrap-collapse.js"></script>#}
-{#<script src="{{STATIC_URL}}bootstrap/js/bootstrap-carousel.js"></script>#}
-{#<script src="{{STATIC_URL}}bootstrap/js/bootstrap-typeahead.js"></script>#}
-
-</body>
-</body>
-</html>
+{% endblock %}

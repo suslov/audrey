@@ -1,0 +1,43 @@
+{% load tags %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    {% block meta_cache_control %}
+        <meta http-equiv="expires" content="31104000">
+    {% endblock %}
+    <meta name="robots" content="ALL">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="format-detection" content="telephone=no">
+    <title>{% block title%}TITLE{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{ STATIC_URL }}bootstrap/css/bootstrap.css" rel='stylesheet'>
+    <link href="{{ STATIC_URL }}bootstrap-responsive.css" rel="stylesheet">
+    <link href="{{ STATIC_URL }}doc.css" rel="stylesheet">
+</head>
+<body>
+
+{% block header %}
+<header class="jumbotron subhead" id="overview">
+    <div class="container">
+        <h1><a class="title" href="/">TITLE</a></h1>
+    </div>
+</header>
+{% endblock%}
+
+{% block content %}{% endblock %}
+
+{% block footerLink %}
+<footer class="footer">
+    <div class="containter">
+        <p>shootstar blog</p>
+    </div>
+</footer>
+{% endblock %}
+
+<script src="http://code.jquery.com/jquery.js"></script>
+<script src="{{ STATIC_URL }}bootstrap/js/bootstrap.min.js"></script>
+
+</body>
+</html>
