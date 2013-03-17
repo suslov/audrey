@@ -1,3 +1,5 @@
+draft
 fabfile.py
 settings.py
 *.pyc
+*.wsgi

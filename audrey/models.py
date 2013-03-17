@@ -42,6 +42,7 @@ class Blog(models.Model):
         category = self.category.all()
         cls = self.__class__
         return cls.objects.filter(category__in=category).exclude(id=self.id)[:num]
+
     @property
     def next(self):
         cls = self.__class__

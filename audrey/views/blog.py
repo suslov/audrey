@@ -12,8 +12,11 @@ class BlogIndexView(BlogView,TemplateView):
     template_name = 'index.html'
 
     def get(self,request,*args,**kwargs):
-        blogs = Blog.get_newest() 
-        return self.render_to_response({'blogs':blogs})
+        blogs = Blog.get_newest()
+        most_reads_blog = Blog.get_most_read()
+
+        return self.render_to_response({'blogs':blogs,
+                                        'most_reads_blog':most_reads_blog})
 
 
 class BlogDetailView(BlogView,TemplateView):
