@@ -18,44 +18,40 @@
          </div>
          <div>
             <section>
+             <div class="modal-header">
              <h2>Add comment</h2>
-            <form class="form-horizontal" action="/comment/{{ blog.id }}/" method="POST">
+             </div>
+            <form action="/comment/{{ blog.id }}/" method="POST">
                 {% csrf_token %}
                 {{ form.non_field_errors }}
-                <div class="control-group">
+                <div class="controls controls-row">
                     {{ form.author.errors }}
                     <label class="control-label" >Your name:</label>
-                    <div class="controls">
                     {{ form.author }}
-                    </div>
-                </div>
-                <div class="control-group">
                     {{ form.email.errors }}
                     <label class="control-label">Email:</label>
-                    <div class="controls">
                     {{ form.email }}
-                    </div>
                 </div>
-                <div class="control-group">
+                <div class="controls">
                     {{ form.comment.errors }}
                     <label class="control-label">Comment:</label>
-                    <div class="controls">
                     {{ form.comment }}
-                    </div>
                 </div>
-                <div class="control-group">
-                    <div class="controls">
+                <div class="controls">
                     <button type="submit" class="btn btn-primary">ADD comment</button>
-                    </div>
                 </div>
             </form>
 
-            {% for comment in comments %}
-                <div class='container'>
-                <h3>{{ comment.author|safe|linebreaks}}</h3>
-                <p>{{ comment.comment|safe|linebreaks}}</p>
-                </div>
-            {% endfor %}
+            {%  if comments %}
+                <h2>{{ comments|length }}件コメントがあります。</h2>
+                {% for comment in comments %}
+                    <div class='container'>
+                    <hr>
+                    <h3>{{ comment.author|safe|linebreaks}}</h3>
+                    <p>{{ comment.comment|safe|linebreaks}}</p>
+                    </div>
+                {% endfor %}
+            {% endif %}
             </section>
          </div>
     </div>

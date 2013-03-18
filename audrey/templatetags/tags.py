@@ -46,4 +46,6 @@ def markdown(value, arg=''):
 
 @register.filter()
 def summary(value):
-    return value[0:500]
+    value = value.split("<")[0]
+    value = value.split('\r\n\r\n')[0]
+    return value
